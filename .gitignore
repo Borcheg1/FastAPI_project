@@ -1,0 +1,12 @@
+# virtual environment
+.env
+/env
+
+# PyCharm files
+/.idea
+__pycache__
+
+# db migrations files
+migrations/README
+migrations/script.py.mako
+
