@@ -9,7 +9,7 @@ import os
 import sys
 
 from src.auth.models import *
-from src.posts.models import *
+from src.adverise.models import *
 
 from src.config import DB_HOST, DB_NAME, DB_PASS, DB_PORT, DB_USER
 from src.database import Base
