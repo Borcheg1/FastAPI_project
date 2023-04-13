@@ -1,8 +1,8 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI
 
-from src.auth.auth import auth_backend, fastapi_users, current_user
-from src.auth.models import User
+from src.auth.auth import auth_backend, fastapi_users
 from src.auth.schemas import UserRead, UserCreate
+from src.adverise.router import router as advertise_router
 
 app = FastAPI(
     title="Real estate app"
@@ -11,21 +11,13 @@ app = FastAPI(
 app.include_router(
     fastapi_users.get_auth_router(auth_backend),
     prefix="/auth/jwt",
-    tags=["auth"],
+    tags=["Auth"],
 )
 
 app.include_router(
     fastapi_users.get_register_router(UserRead, UserCreate),
     prefix="/auth",
-    tags=["auth"],
+    tags=["Auth"],
 )
 
-
-@app.get("/protected-route")
-def protected_route(user: User = Depends(current_user)):
-    return f"Hello, {user.username}"
-
-
-@app.get("/unprotected-route")
-def unprotected_route():
-    return f"Hello, anonym"
+app.include_router(advertise_router)
