@@ -8,8 +8,11 @@ from alembic import context
 import os
 import sys
 
+from src.auth.models import *
+from src.posts.models import *
+
 from src.config import DB_HOST, DB_NAME, DB_PASS, DB_PORT, DB_USER
-from src.auth.models import Base
+from src.database import Base
 
 
 sys.path.append(os.path.join(sys.path[0], 'src'))
