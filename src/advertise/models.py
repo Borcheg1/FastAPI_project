@@ -16,4 +16,3 @@ class Advertise(Base):
     created_at: Mapped[datetime] = mapped_column(TIMESTAMP, default=datetime.utcnow)
     description: Mapped[str] = mapped_column(Text)
     image_url: Mapped[str] = mapped_column(String(length=320))
-

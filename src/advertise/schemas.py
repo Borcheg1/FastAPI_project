@@ -11,3 +11,6 @@ class CreateAdvertise(BaseModel):
     created_at: datetime
     description: str
     image_url: str
+
+    class Config:
+        orm_mode = True
