@@ -2,7 +2,7 @@ from fastapi import FastAPI
 
 from src.auth.auth import auth_backend, fastapi_users
 from src.auth.schemas import UserRead, UserCreate
-from src.adverise.router import router as advertise_router
+from src.advertise.router import router as advertise_router
 
 app = FastAPI(
     title="Real estate app"
