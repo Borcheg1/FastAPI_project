@@ -11,7 +11,7 @@ class User(SQLAlchemyBaseUserTable[int], Base):
     __tablename__ = "user"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    username: Mapped[str] = mapped_column(String(length=320), nullable=False)
+    username: Mapped[str] = mapped_column(String(length=50), nullable=False)
     email: Mapped[str] = mapped_column(String(length=320), unique=True, index=True, nullable=False)
     registered_at: Mapped[datetime] = mapped_column(TIMESTAMP, default=datetime.utcnow)
     role_id: Mapped[int] = mapped_column(Integer, ForeignKey("role.id"))
@@ -26,4 +26,4 @@ class Role(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name: Mapped[str] = mapped_column(String(length=320), nullable=False)
-    permissions: Mapped[JSON] = mapped_column(String(length=320), nullable=False)
+    permissions: Mapped[JSON] = mapped_column(String(length=320))
