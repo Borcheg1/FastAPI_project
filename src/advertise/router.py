@@ -4,7 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.exc import IntegrityError
 
 from src.advertise.schemas import CreateAdvertise
-from src.auth.auth import fastapi_users
+from src.auth.auth import current_user
 from src.auth.models import User
 from src.database import get_async_session
 from src.advertise.models import Advertise
@@ -14,10 +14,8 @@ router = APIRouter(
     tags=["Advertise"]
 )
 
-current_user = fastapi_users.current_user()
 
-
-@router.get("/")
+@router.get("")
 async def advertise(max_price: int,
                     limit: int = 2,
                     offset: int = 0,
@@ -40,7 +38,7 @@ async def advertise(max_price: int,
         }
 
 
-@router.post("/")
+@router.post("")
 async def advertise(
         new_advertise: CreateAdvertise,
         session: AsyncSession = Depends(get_async_session),
