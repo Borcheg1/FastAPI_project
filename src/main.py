@@ -10,6 +10,7 @@ from src.auth.schemas import UserRead, UserCreate
 from src.advertise.router import router as advertise_router
 from src.tasks.router import router as tasks_router
 
+
 app = FastAPI(
     title="Real estate app"
 )
