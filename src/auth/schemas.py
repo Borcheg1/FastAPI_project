@@ -1,7 +1,8 @@
 from typing import Optional
 
+from fastapi import HTTPException
 from fastapi_users import schemas, models
-from pydantic import EmailStr
+from pydantic import EmailStr, validator
 
 
 class UserRead(schemas.BaseUser[str]):
@@ -23,3 +24,21 @@ class UserCreate(schemas.BaseUserCreate):
     is_superuser: Optional[bool] = False
     is_verified: Optional[bool] = False
 
+    @validator("username")
+    def validate_username(cls, v):
+        v = v.strip()
+        if not v:
+            raise HTTPException(status_code=422, detail="Username can't be empty")
+        elif not isinstance(v, str):
+            raise HTTPException(status_code=422, detail="Username must be a string")
+        elif not v.isalnum():
+            raise HTTPException(status_code=422, detail="Username must be alphanumeric")
+        elif len(v) > 50:
+            raise HTTPException(status_code=422, detail="Username must be less than 50 characters")
+        return v
+
+    @validator("password")
+    def validate_password(cls, v):
+        if len(v) < 6:
+            raise HTTPException(status_code=422, detail="Password should beat least 6 characters")
+        return v
