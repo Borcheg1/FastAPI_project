@@ -11,11 +11,11 @@ SMTP_PORT = 465
 celery = Celery("tasks", broker="redis://localhost:6379")
 
 
-def create_email(username: str):
+def create_email(username: str, user_mail: str):
     email = EmailMessage()
     email["Subject"] = "Real Estate"
     email["From"] = SMTP_USER
-    email["To"] = SMTP_USER
+    email["To"] = user_mail
 
     email.set_content(
         "<div>"
@@ -27,8 +27,8 @@ def create_email(username: str):
 
 
 @celery.task
-def send_email(username: str):
-    email = create_email(username)
+def send_email(username: str, user_mail: str):
+    email = create_email(username, user_mail)
     with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT) as server:
         server.login(SMTP_USER, SMTP_PASS)
         server.send_message(email)
