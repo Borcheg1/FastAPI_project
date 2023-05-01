@@ -2,9 +2,12 @@ import os
 
 from dotenv import load_dotenv
 
+
 load_dotenv()
 
 AUTH_TOKEN = os.environ.get('AUTH_TOKEN')
+VERIF_TOKEN = os.environ.get('VERIF_TOKEN')
+RESET_TOKEN = os.environ.get('RESET_TOKEN')
 
 DB_HOST = os.environ.get('DB_HOST')
 DB_PORT = os.environ.get('DB_PORT')
