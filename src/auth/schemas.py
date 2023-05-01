@@ -40,5 +40,5 @@ class UserCreate(schemas.BaseUserCreate):
     @validator("password")
     def validate_password(cls, v):
         if len(v) < 6:
-            raise HTTPException(status_code=422, detail="Password should beat least 6 characters")
+            raise HTTPException(status_code=422, detail="Password should be at least 6 characters")
         return v
