@@ -6,6 +6,9 @@
 /.idea
 __pycache__
 
+# PyTest cache
+.pytest_cache
+
 # db migrations files
 migrations/README
 migrations/script.py.mako
